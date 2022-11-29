@@ -19,6 +19,4 @@ set history=1000
 set wildmenu
 set wildmode=list:longest
 set wildignore=*docx,*.jpg,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
-colorscheme ron
 set belloff=all
-
