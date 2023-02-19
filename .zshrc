@@ -3,7 +3,7 @@ HISTFILE=~/.histfile
 HISTSIZE=1500
 SAVEHIST=1500
 VIRTUAL_ENV_DISABLE_PROMPT=true
-
+export PATH="/home/asura/.local/bin:$PATH"
 
 #bindkeys
 bindkey -v
