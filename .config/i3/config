@@ -189,4 +189,4 @@ bar {
         status_command i3status
 }
 
-bindsym $mod+t exec firefox
+bindsym $mod+Control+t exec firefox

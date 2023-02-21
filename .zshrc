@@ -40,4 +40,8 @@ compinit
 
 #hooks
 add-zsh-hook precmd pr 
-add-zsh-hook chpwd prechpwdls 
+add-zsh-hook chpwd prechpwdls
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"

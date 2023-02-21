@@ -1,0 +1,35 @@
+services:
+  django:
+    build: ./ecom
+    command: poetry run python manage.py runserver 0.0.0.0:1488
+    ports:
+      - "8000:1488"
+    depends_on:
+      - db
+  front:
+    build: ./ecom-vue
+    command: npm run serve
+    ports:
+      - "8080:1488"
+    depends_on:
+      - db
+      - django
+  db:
+    image: postgres:15.2
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=hello_django
+      - POSTGRES_PASSWORD=hello_django
+      - POSTGRES_DB=hello_django_dev
+
+volumes:
+  postgres_data:
+
+configs:
+  httpd-config:
+    external: true
+
+secrets:
+  server-certificate:
+    external: true
