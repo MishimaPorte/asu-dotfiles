@@ -3,7 +3,9 @@ HISTFILE=~/.histfile
 HISTSIZE=1500
 SAVEHIST=1500
 VIRTUAL_ENV_DISABLE_PROMPT=true
-export PATH="/home/asura/.local/bin:$PATH"
+export PATH="$HOME/.cabal/bin:$HOME/.local/bin:$HOME/.ghcup/bin:$PATH"
+
+alias gcam='git commit -am'
 
 #bindkeys
 bindkey -v
