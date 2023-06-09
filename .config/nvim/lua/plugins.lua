@@ -26,6 +26,7 @@ Plug "tweekmonster/impsort.vim"
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'onsails/lspkind-nvim'
 
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -33,7 +34,45 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-nvim-lua'
 
+Plug 'nvim-lua/plenary.nvim'
+Plug 'ThePrimeagen/harpoon'
+Plug 'numToStr/Comment.nvim'
+Plug "jose-elias-alvarez/null-ls.nvim"
 
 
+Plug ('olexsmir/gopher.nvim', {config = function()
+      require('plugins.gopher')
+    end})
+Plug 'ray-x/go.nvim'
+Plug 'kyazdani42/nvim-web-devicons' -- not working
 vim.call('plug#end')
 
+
+require('telescope').setup {
+    pickers = {
+        find_files = {
+            hidden = true
+        }
+    }
+}
+
+require('Comment').setup({
+    opleader = { line = '|'},
+})
+
+require('nvim-web-devicons').setup({ default = true; }) -- not working somehow
+
+
+mason_lspconfig = require("mason-lspconfig")
+
+require("mason").setup({})
+
+mason_lspconfig.setup({})
+mason_lspconfig.setup_handlers {
+function(server_name)
+  require("lspconfig")[server_name].setup({})
+end
+}
+
+require("plgs.gonvim")
+require("plgs.py")

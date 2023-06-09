@@ -44,6 +44,24 @@ lspconfig['hls'].setup{
     filetypes = { 'haskell', 'lhaskell', 'cabal' },
 }
 
+local util = require('lspconfig/util')
+lspconfig['gopls'].setup{
+    on_attach = on_attach,
+    cmd = { 'gopls', 'serve' },
+    filetypes = { 'go', 'go.mod' },
+    root_dir = util.root_pattern('go.work', 'go.mod', '.git'),
+    flags = lsp_flags,
+    settings = {
+        gopls = {
+            analyses = {
+                unusedparams = true,
+                shadow = true,
+            },
+            staticcheck = true,
+        }
+    }
+}
+
 require('cmp').setup {
   sources = {
     { name = 'nvim_lsp' }
@@ -55,3 +73,4 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 lspconfig.clangd.setup {
   capabilities = capabilities,
 }
+

@@ -22,4 +22,5 @@ vim.cmd(':set wildmode=list:longest')
 vim.cmd(':set wildignore=*docx,*.jpg,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx')
 vim.opt.belloff='all'
 vim.g.mapleader = ';'
+vim.opt.completeopt="longest"
 
