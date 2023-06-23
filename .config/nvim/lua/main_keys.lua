@@ -17,12 +17,6 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
 
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, opts)
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, opts)
-vim.keymap.set('n', '<leader>fb', builtin.buffers, opts)
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, opts)
-
 -- HARPOON settings (lol)
 local harpoon = require('harpoon')
 local harpoon_ui = require('harpoon.ui')
@@ -58,4 +52,5 @@ nnoremap <C-j> <C-w>j\
 nnoremap <C-k> <C-w>k\
 nnoremap <C-l> <C-w>l\
 inoremap <C-Space> <C-x><C-o>\
+nnoremap <Space> @q\
 ")

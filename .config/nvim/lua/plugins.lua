@@ -22,6 +22,10 @@ Plug 'nvim-treesitter/playground'
 Plug 'Mofiqul/vscode.nvim'
 Plug "RRethy/nvim-base16"
 Plug "tweekmonster/impsort.vim"
+Plug 'tanvirtin/vgit.nvim' -- git integration
+
+Plug 'mfussenegger/nvim-dap' -- DAP, finally. 20 06 2023
+Plug 'rcarriga/nvim-dap-ui' -- vscode-like dap monstrocity, 22 06 2023
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/mason.nvim'
@@ -35,8 +39,10 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-nvim-lua'
 
 Plug 'nvim-lua/plenary.nvim'
-Plug 'ThePrimeagen/harpoon'
-Plug 'numToStr/Comment.nvim'
+Plug 'ThePrimeagen/harpoon' -- some prime not working monstrocity, ?? 04 2023
+Plug 'numToStr/Comment.nvim' -- comments
+Plug 'folke/todo-comments.nvim' -- todos 22 06 2023
+
 Plug "jose-elias-alvarez/null-ls.nvim"
 
 
@@ -44,23 +50,17 @@ Plug ('olexsmir/gopher.nvim', {config = function()
       require('plugins.gopher')
     end})
 Plug 'ray-x/go.nvim'
-Plug 'kyazdani42/nvim-web-devicons' -- not working
+Plug 'kyazdani42/nvim-web-devicons' -- working finally, 22 06 2023
+
 vim.call('plug#end')
-
-
-require('telescope').setup {
-    pickers = {
-        find_files = {
-            hidden = true
-        }
-    }
-}
 
 require('Comment').setup({
     opleader = { line = '|'},
 })
 
-require('nvim-web-devicons').setup({ default = true; }) -- not working somehow
+require('todo-comments').setup({})
+
+require('nvim-web-devicons').setup({ default = true; })
 
 
 mason_lspconfig = require("mason-lspconfig")
@@ -68,11 +68,17 @@ mason_lspconfig = require("mason-lspconfig")
 require("mason").setup({})
 
 mason_lspconfig.setup({})
+
 mason_lspconfig.setup_handlers {
 function(server_name)
   require("lspconfig")[server_name].setup({})
 end
 }
 
+
 require("plgs.gonvim")
 require("plgs.py")
+require("plgs.git")
+
+require("plgs.dap")
+require("plgs.telescope")

@@ -7,7 +7,7 @@ export GITLAB_URI="https://git.apsolutions.ru"
 export EDITOR=nvim
 VIRTUAL_ENV_DISABLE_PROMPT=true
 fpath+=~/.zfunc
-PATH=/home/asu/.scripts:$(pyenv root)/bin:$PATH
+PATH=/home/asu/.myapps:/home/asu/.scripts:$(pyenv root)/bin:$PATH
 PYENV_ROOT=$(pyenv root)
 eval "$(pyenv init -)"
 alias gurl="grpc_cli"
