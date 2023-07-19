@@ -8,7 +8,7 @@ vim.keymap.set('n', '<leader>T', '<cmd>:tabnew<CR>:Neomux<CR>')
 vim.keymap.set('n', '<leader>t', ':split<CR>:res 11<CR>:call NeomuxTerm()<CR>')
 vim.g.neomux_start_term_split_map = ""
 vim.g.neomux_winjump_map_prefix = "<leader>w"
-vim.g.neomux_exit_term_mode_map = ""
+vim.g.neomux_exit_term_mode_map = "<C-Space>"
 vim.g.neomux_default_shell = "zsh"
 
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)

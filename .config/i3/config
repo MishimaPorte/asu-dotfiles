@@ -198,10 +198,11 @@ bar {
 }
 
 bindsym $mod+Control+t exec firefox
-bindsym $mod+Control+b exec ~/.vsc/code
 bindsym $mod+Control+m exec mattermost-desktop
 bindsym $mod+Control+n exec dbeaver
 bindsym $mod+Control+z exec burpsuite
 bindsym $mod+Control+o exec libreoffice
 bindsym $mod+Control+c exec clickup
 bindsym $mod+Control+x exec i3lock
+bindsym $mod+Control+g exec telegram-desktop
+bindsym $mod+Control+b exec calibre

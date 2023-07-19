@@ -7,7 +7,7 @@ export GITLAB_URI="https://git.apsolutions.ru"
 export EDITOR=nvim
 VIRTUAL_ENV_DISABLE_PROMPT=true
 fpath+=~/.zfunc
-PATH=/home/asu/.myapps:/home/asu/.scripts:$(pyenv root)/bin:$PATH
+PATH=/home/asu/.local/bin:/home/asu/.myapps:/home/asu/.scripts:$(pyenv root)/bin:$PATH
 PYENV_ROOT=$(pyenv root)
 eval "$(pyenv init -)"
 alias gurl="grpc_cli"
@@ -19,6 +19,7 @@ alias dprune='docker rm $(docker stop $(docker container ls -aq))'
 alias d="docker"
 alias z="zellij"
 alias pvim="poetry run nvim"
+alias library="calibre"
 alias post='curl -X POST -H "Content-Type: application\json"'
 alias get='curl -X GET'
 #bindkeys

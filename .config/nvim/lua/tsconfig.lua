@@ -1,6 +1,6 @@
 ts = require('nvim-treesitter.configs')
 ts.setup {
-  ensure_installed = { "c", "lua", "vim", "help", "python", "haskell", "javascript" },
+  ensure_installed = { "c", "lua", "vim", "vimdoc", "python", "haskell", "javascript" },
   sync_install = false,
   auto_install = true,
   highlight = {
