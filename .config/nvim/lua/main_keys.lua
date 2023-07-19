@@ -4,8 +4,13 @@ vim.keymap.set('n', '<F8>', '<cmd>:TagbarToggle<CR>')
 vim.keymap.set('n', '<F2>', '<cmd>:NERDTree<CR>') 
 
 vim.keymap.set('n', '<leader><Tab>', '<cmd>:tabnew<CR>')
+vim.keymap.set('n', '<leader>q', '<cmd>:tabclose<CR>')
 vim.keymap.set('n', '<leader>T', '<cmd>:tabnew<CR>:Neomux<CR>')
 vim.keymap.set('n', '<leader>t', ':split<CR>:res 11<CR>:call NeomuxTerm()<CR>')
+vim.keymap.set('n', '<C-a>', '<cmd>:tabp<CR>')
+vim.keymap.set('n', '<C-d>', '<cmd>:tabn<CR>')
+vim.keymap.set('t', '<C-a>', '<cmd>:tabp<CR>')
+vim.keymap.set('t', '<C-d>', '<cmd>:tabn<CR>')
 vim.g.neomux_start_term_split_map = ""
 vim.g.neomux_winjump_map_prefix = "<leader>w"
 vim.g.neomux_exit_term_mode_map = "<C-Space>"
@@ -46,6 +51,4 @@ nnoremap <C-j> <C-w>j\
 nnoremap <C-k> <C-w>k\
 nnoremap <C-l> <C-w>l\
 nnoremap <Space> @q\
-nnoremap L gt\
-nnoremap H gT\
 ")

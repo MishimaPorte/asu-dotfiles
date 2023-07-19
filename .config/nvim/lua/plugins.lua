@@ -23,6 +23,7 @@ Plug 'folke/tokyonight.nvim'
 Plug "RRethy/nvim-base16"
 Plug "tweekmonster/impsort.vim"
 Plug 'tanvirtin/vgit.nvim' -- git integration
+Plug 'crispgm/nvim-tabline'
 
 Plug 'mfussenegger/nvim-dap' -- DAP, finally. 20 06 2023
 Plug 'rcarriga/nvim-dap-ui' -- vscode-like dap monstrocity, 22 06 2023
@@ -87,3 +88,4 @@ require("plgs.git")
 
 require("plgs.dap")
 require("plgs.telescope")
+require("plgs.bar")
