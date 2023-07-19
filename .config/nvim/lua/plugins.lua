@@ -19,7 +19,7 @@ Plug ('nvim-telescope/telescope.nvim', { tag= '0.1.1' }) -- file searching tool
 Plug 'mrcjkb/haskell-tools.nvim'
 Plug 'nvim-treesitter/nvim-treesitter' -- tresitter for intelligent syntax highlight
 Plug 'nvim-treesitter/playground'
-Plug 'Mofiqul/vscode.nvim'
+Plug 'folke/tokyonight.nvim'
 Plug "RRethy/nvim-base16"
 Plug "tweekmonster/impsort.vim"
 Plug 'tanvirtin/vgit.nvim' -- git integration
