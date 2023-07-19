@@ -27,6 +27,9 @@ Plug 'tanvirtin/vgit.nvim' -- git integration
 Plug 'mfussenegger/nvim-dap' -- DAP, finally. 20 06 2023
 Plug 'rcarriga/nvim-dap-ui' -- vscode-like dap monstrocity, 22 06 2023
 
+Plug 'sudormrfbin/cheatsheet.nvim' -- hotkey finder
+Plug 'nvim-lua/popup.nvim'
+
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'

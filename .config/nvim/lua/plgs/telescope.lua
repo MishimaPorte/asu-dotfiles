@@ -10,9 +10,11 @@ require('telescope').setup {
         mappings = {
           i = {
             ["<c-d>"] = actions.delete_buffer + actions.move_to_top,
+            ["<CR>"] = actions.select_tab,
           },
           n = {
             ["<c-d>"] = actions.delete_buffer + actions.move_to_top,
+            ["<CR>"] = actions.select_tab,
           }
         }
       },
