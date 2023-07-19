@@ -14,12 +14,14 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
 end
 
+
+local luasnip = require("luasnip")
 local cmp = require('cmp')
   cmp.setup({
     snippet = {
       expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-      end,
+        luasnip.lsp_expand(args.body)
+      end
     },
     window = {
       -- completion = cmp.config.window.bordered(),
@@ -36,8 +38,8 @@ local cmp = require('cmp')
             cmp.select_next_item()
           elseif luasnip.expand_or_jumpable() then
             luasnip.expand_or_jump()
-          elseif has_words_before() then
-            cmp.complete()
+          -- elseif has_words_before() then
+          --   cmp.complete()
           else
             fallback()
           end
@@ -66,15 +68,21 @@ local cmp = require('cmp')
   })
 
   cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-      { name = 'path' }
-    }, {
-      { name = 'cmdline' }
+      mapping = cmp.mapping.preset.cmdline(),
+      sources = cmp.config.sources({
+        { name = 'path' }
+      }, {
+        {
+          name = 'cmdline',
+          option = {
+            ignore_cmds = { 'Man', '!' }
+          }
+        }
+      })
     })
-  })
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 local lsp_flags = {
   debounce_text_changes = 150,
 }
@@ -86,22 +94,26 @@ lspconfig['pyright'].setup{
 lspconfig['tsserver'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
+  capabilities = capabilities,
 }
 lspconfig['rust_analyzer'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
+  capabilities = capabilities,
     settings = {
       ["rust-analyzer"] = {}
     }
 }
 lspconfig['hls'].setup{
     on_attach = on_attach,
+  capabilities = capabilities,
     flags = lsp_flags,
     filetypes = { 'haskell', 'lhaskell', 'cabal' },
 }
 
 local util = require('lspconfig.util')
 lspconfig['gopls'].setup{
+  capabilities = capabilities,
     on_attach = on_attach,
     cmd = { 'gopls', 'serve' },
     filetypes = { 'go', 'go.mod' },

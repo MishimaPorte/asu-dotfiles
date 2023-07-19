@@ -3,14 +3,13 @@ local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<F8>', '<cmd>:TagbarToggle<CR>') 
 vim.keymap.set('n', '<F2>', '<cmd>:NERDTree<CR>') 
 
-vim.keymap.set('n', '<leader>t', '<cmd>:Neomux<CR>')
-vim.g.neomux_start_term_split_map = "<leader>t"
-vim.g.neomux_start_term_vsplit_map = "<leader>vt"
+vim.keymap.set('n', '<leader><Tab>', '<cmd>:tabnew<CR>')
+vim.keymap.set('n', '<leader>T', '<cmd>:tabnew<CR>:Neomux<CR>')
+vim.keymap.set('n', '<leader>t', ':split<CR>:res 11<CR>:call NeomuxTerm()<CR>')
+vim.g.neomux_start_term_split_map = ""
 vim.g.neomux_winjump_map_prefix = "<leader>w"
 vim.g.neomux_exit_term_mode_map = ""
 vim.g.neomux_default_shell = "zsh"
-
-vim.keymap.set('n', '<leader>T', '<cmd>:tabnew<CR>')
 
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
