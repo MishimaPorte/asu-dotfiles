@@ -7,6 +7,15 @@ ts.setup {
     enable = true,
     additional_vim_regex_highlighting = true,
   },
+  incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = "T",
+        node_incremental = "T",
+        scope_incremental = "Y",
+        node_decremental = "F",
+      },
+    },
   playground = {
     enable = true,
     disable = {},
