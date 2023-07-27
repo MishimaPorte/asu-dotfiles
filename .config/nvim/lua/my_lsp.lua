@@ -33,6 +33,13 @@ local cmp = require('cmp')
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.abort(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+      ["<S-Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
       ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
@@ -62,6 +69,16 @@ local cmp = require('cmp')
     })
   })
 
+  cmp.setup.filetype('go', {
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' }, 
+    })
+  })
+  cmp.setup.filetype('go.mod', {
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' }, 
+    })
+  })
   cmp.setup.cmdline({ '/', '?' }, {
     mapping = cmp.mapping.preset.cmdline(),
     sources = {
