@@ -11,12 +11,12 @@ require('telescope').setup {
           i = {
             ["<c-d>"] = actions.delete_buffer + actions.move_to_top,
             ["O"] = actions.select_tab,
-            ["o"] = actions.select_default,,
+            ["o"] = actions.select_default,
           },
           n = {
             ["<c-d>"] = actions.delete_buffer + actions.move_to_top,
             ["O"] = actions.select_tab,
-            ["o"] = actions.select_default,,
+            ["o"] = actions.select_default,
           }
         }
       },
