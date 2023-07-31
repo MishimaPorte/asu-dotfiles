@@ -30,7 +30,7 @@ local cmp = require('cmp')
     mapping = cmp.mapping.preset.insert({
       ['J'] = cmp.mapping.scroll_docs(-4),
       ['K'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
+      -- ['<leader>c'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.abort(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
       ["<S-Tab>"] = cmp.mapping(function(fallback)
@@ -46,7 +46,7 @@ local cmp = require('cmp')
           -- elseif luasnip.expand_or_jumpable() then
           --   luasnip.expand_or_jump()
           -- elseif has_words_before() then
-          --   cmp.complete()
+          --   cmp.complete() -- i dont know what is it and why is it here but since it foes not need to eat i shall let it stay till i figure out why does it fuck all the config up
           else
             fallback()
           end

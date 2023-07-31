@@ -2,6 +2,7 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin')
 
+Plug 'm4xshen/autoclose.nvim' -- autobrackets 30th of july year two thousand twenty third
 Plug 'tpope/vim-surround' -- surroundigs
 Plug 'preservim/nerdtree' -- filesystem browser
 Plug 'tpope/vim-commentary' -- gcc
@@ -80,6 +81,9 @@ function(server_name)
   require("lspconfig")[server_name].setup({})
 end
 }
+
+require("autoclose").setup({
+})
 
 
 require("plgs.gonvim")
