@@ -66,20 +66,15 @@ require('Comment').setup({
 })
 
 require('todo-comments').setup({})
-
 require('nvim-web-devicons').setup({ default = true; })
 
-
-mason_lspconfig = require("mason-lspconfig")
-
 require("mason").setup({})
-
+mason_lspconfig = require("mason-lspconfig")
 mason_lspconfig.setup({})
-
 mason_lspconfig.setup_handlers {
-function(server_name)
-  require("lspconfig")[server_name].setup({})
-end
+    function(server_name)
+      require("lspconfig")[server_name].setup({})
+    end
 }
 
 require("autoclose").setup({
@@ -89,7 +84,6 @@ require("autoclose").setup({
 require("plgs.gonvim")
 require("plgs.py")
 require("plgs.git")
-
 require("plgs.dap")
 require("plgs.telescope")
 require("plgs.bar")

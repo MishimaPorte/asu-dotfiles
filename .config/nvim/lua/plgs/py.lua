@@ -1,6 +1,5 @@
 null_ls = require("null-ls")
 
-
 local sources = {
   -- python
   null_ls.builtins.formatting.black,
