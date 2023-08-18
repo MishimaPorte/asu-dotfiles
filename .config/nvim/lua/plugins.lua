@@ -44,6 +44,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/cmp-nvim-lua'
+Plug 'ray-x/lsp_signature.nvim' -- function argumets completion 18 08 2023
 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'ThePrimeagen/harpoon' -- some prime not working monstrocity, ?? 04 2023
@@ -52,6 +53,8 @@ Plug 'folke/todo-comments.nvim' -- todos 22 06 2023
 
 Plug "jose-elias-alvarez/null-ls.nvim"
 
+Plug "MunifTanjim/nui.nvim"
+Plug "kndndrj/nvim-dbee"
 
 Plug ('olexsmir/gopher.nvim', {config = function()
       require('plugins.gopher')
@@ -87,3 +90,4 @@ require("plgs.git")
 require("plgs.dap")
 require("plgs.telescope")
 require("plgs.bar")
+require("plgs.dbee")
