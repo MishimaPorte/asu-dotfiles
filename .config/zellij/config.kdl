@@ -60,6 +60,9 @@ keybinds clear-defaults=true {
         bind "2" { GoToTab 2; SwitchToMode "Normal"; }
         bind "3" { GoToTab 3; SwitchToMode "Normal"; }
         bind "4" { GoToTab 4; SwitchToMode "Normal"; }
+        bind "b" { BreakPane; SwitchToMode "Normal"; }
+        bind "]" { BreakPaneRight; SwitchToMode "Normal"; }
+        bind "[" { BreakPaneLeft; SwitchToMode "Normal"; }
         bind "5" { GoToTab 5; SwitchToMode "Normal"; }
         bind "6" { GoToTab 6; SwitchToMode "Normal"; }
         bind "7" { GoToTab 7; SwitchToMode "Normal"; }
@@ -112,6 +115,13 @@ keybinds clear-defaults=true {
         bind "Ctrl o" { SwitchToMode "Normal"; }
         bind "Ctrl s" { SwitchToMode "Scroll"; }
         bind "d" { Detach; }
+        bind "w" {
+            LaunchOrFocusPlugin "zellij:session-manager" {
+                floating true
+                move_to_focused_tab true
+            };
+            SwitchToMode "Normal"
+        }
     }
     tmux {
         bind "[" { SwitchToMode "Scroll"; }

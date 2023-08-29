@@ -25,6 +25,7 @@ Plug "RRethy/nvim-base16"
 Plug "tweekmonster/impsort.vim"
 Plug 'tanvirtin/vgit.nvim' -- git integration
 Plug 'crispgm/nvim-tabline'
+Plug 'anuvyklack/pretty-fold.nvim' -- pretty folding 28 08 23
 
 Plug 'mfussenegger/nvim-dap' -- DAP, finally. 20 06 2023
 Plug 'rcarriga/nvim-dap-ui' -- vscode-like dap monstrocity, 22 06 2023
@@ -55,6 +56,7 @@ Plug "jose-elias-alvarez/null-ls.nvim"
 
 Plug "MunifTanjim/nui.nvim"
 Plug "kndndrj/nvim-dbee"
+-- Plug "towolf/vim-helm" -- helm charts 24 08 2023
 
 Plug ('olexsmir/gopher.nvim', {config = function()
       require('plugins.gopher')
@@ -63,13 +65,6 @@ Plug 'ray-x/go.nvim'
 Plug 'kyazdani42/nvim-web-devicons' -- working finally, 22 06 2023
 
 vim.call('plug#end')
-
-require('Comment').setup({
-    opleader = { line = '|'},
-})
-
-require('todo-comments').setup({})
-require('nvim-web-devicons').setup({ default = true; })
 
 require("mason").setup({})
 mason_lspconfig = require("mason-lspconfig")
@@ -80,9 +75,24 @@ mason_lspconfig.setup_handlers {
     end
 }
 
-require("autoclose").setup({
+require("autoclose").setup({})
+require('pretty-fold').setup({
+   sections = {
+      left = { 'content' },
+      right = {
+         ' ', 'number_of_folded_lines', ': ', 'percentage', ' ',
+         function(config) return config.fill_char:rep(20) end
+      }
+   },
+   fill_char = '•',
+   process_comment_signs = 'delete',
+   add_close_pattern = true,
 })
-
+require('todo-comments').setup({})
+require('nvim-web-devicons').setup({ default = true; })
+require('Comment').setup({
+    opleader = { line = '|'},
+})
 
 require("plgs.gonvim")
 require("plgs.py")

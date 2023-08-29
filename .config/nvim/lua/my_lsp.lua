@@ -154,6 +154,7 @@ lspconfig.clangd.setup {
   capabilities = capabilities,
 }
 
+
 -- a plugin to use LSP with function type sifnatures
 require "lsp_signature".setup({
   debug = false, -- set to true to enable debug logging
