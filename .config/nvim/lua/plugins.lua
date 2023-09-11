@@ -34,8 +34,6 @@ Plug 'sudormrfbin/cheatsheet.nvim' -- hotkey finder
 Plug 'nvim-lua/popup.nvim'
 
 Plug 'neovim/nvim-lspconfig'
-Plug 'williamboman/mason.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'onsails/lspkind-nvim'
 
 Plug ('L3MON4D3/LuaSnip', {tag='v2.*', ['do'] = 'make install_jsregexp'})
@@ -56,7 +54,7 @@ Plug "jose-elias-alvarez/null-ls.nvim"
 
 Plug "MunifTanjim/nui.nvim"
 Plug "kndndrj/nvim-dbee"
--- Plug "towolf/vim-helm" -- helm charts 24 08 2023
+Plug "towolf/vim-helm" -- helm charts 24 08 2023
 
 Plug ('olexsmir/gopher.nvim', {config = function()
       require('plugins.gopher')
@@ -66,14 +64,6 @@ Plug 'kyazdani42/nvim-web-devicons' -- working finally, 22 06 2023
 
 vim.call('plug#end')
 
-require("mason").setup({})
-mason_lspconfig = require("mason-lspconfig")
-mason_lspconfig.setup({})
-mason_lspconfig.setup_handlers {
-    function(server_name)
-      require("lspconfig")[server_name].setup({})
-    end
-}
 
 require("autoclose").setup({})
 require('pretty-fold').setup({
@@ -99,5 +89,6 @@ require("plgs.py")
 require("plgs.git")
 require("plgs.dap")
 require("plgs.telescope")
-require("plgs.bar")
+-- require("plgs.bar")
+require("plgs.harpoon")
 require("plgs.dbee")

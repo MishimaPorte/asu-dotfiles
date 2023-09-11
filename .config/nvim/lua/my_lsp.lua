@@ -1,8 +1,8 @@
 local lspconfig = require('lspconfig')
+local util = require('lspconfig.util')
 local on_attach = function(client, bufnr)
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -14,10 +14,10 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
 end
 
-
 local luasnip = require("luasnip")
 local cmp = require('cmp')
-  cmp.setup({
+
+cmp.setup({
     snippet = {
       expand = function(args)
         luasnip.lsp_expand(args.body)
@@ -57,82 +57,98 @@ local cmp = require('cmp')
     })
   })
 
-  cmp.setup.filetype('gitcommit', {
+cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources({
       { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
     })
-  })
+})
 
-  cmp.setup.filetype('python', {
+cmp.setup.filetype('python', {
     sources = cmp.config.sources({
       { name = 'nvim_lsp' }, 
     })
-  })
+})
 
-  cmp.setup.filetype('go', {
+cmp.setup.filetype('helm', {
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' }, 
+  })
+})
+
+cmp.setup.filetype('go', {
     sources = cmp.config.sources({
       { name = 'nvim_lsp' }, 
     })
-  })
-  cmp.setup.filetype('go.mod', {
+})
+cmp.setup.filetype('go.mod', {
     sources = cmp.config.sources({
       { name = 'nvim_lsp' }, 
     })
-  })
-  cmp.setup.cmdline({ '/', '?' }, {
-    mapping = cmp.mapping.preset.cmdline(),
+})
+cmp.setup.cmdline({ '/', '?' }, {
+mapping = cmp.mapping.preset.cmdline(),
     sources = {
       { name = 'buffer' }
     }
-  })
+})
 
-  cmp.setup.cmdline(':', {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = cmp.config.sources({
-        { name = 'path' }
-      }, {
-        {
-          name = 'cmdline',
-          option = {
-            ignore_cmds = { 'Man', '!' }
-          }
-        }
-      })
-    })
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    {
+      name = 'cmdline',
+      option = {
+        ignore_cmds = { 'Man', '!' }
+      }
+    }
+  })
+})
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 local lsp_flags = {
   debounce_text_changes = 150,
 }
+
+lspconfig['helm_ls'].setup{
+    cmd = {"helm_ls", "serve"},
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+}
+
 lspconfig['pyright'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
-  capabilities = capabilities,
+    capabilities = capabilities,
 }
+
 lspconfig['tsserver'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
-  capabilities = capabilities,
+    capabilities = capabilities,
 }
+
 lspconfig['rust_analyzer'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
-  capabilities = capabilities,
+    capabilities = capabilities,
     settings = {
       ["rust-analyzer"] = {}
     }
 }
+
 lspconfig['hls'].setup{
     on_attach = on_attach,
-  capabilities = capabilities,
+    capabilities = capabilities,
     flags = lsp_flags,
     filetypes = { 'haskell', 'lhaskell', 'cabal' },
 }
 
-local util = require('lspconfig.util')
 lspconfig['gopls'].setup{
-  capabilities = capabilities,
+    capabilities = capabilities,
     on_attach = on_attach,
     cmd = { 'gopls', 'serve' },
     filetypes = { 'go', 'go.mod' },
@@ -148,7 +164,6 @@ lspconfig['gopls'].setup{
         }
     }
 }
-
 
 lspconfig.clangd.setup {
   capabilities = capabilities,
