@@ -100,6 +100,7 @@ map('n', '<leader>a', hm.add_file, opts)
 map('n', '<leader>o', hm.rm_file, opts)
 for i=0,9,1 do -- mapping leader + digit to go for files
     map('n', '<leader>'..i, function() h_ui.nav_file(i) end, opts)
+    map('t', '<leader>'..i, function() h_ui.nav_file(i) end, opts)
 end
 
 -- cmd ui
@@ -107,8 +108,16 @@ map('n', '<leader>T', function() ht.gotoTerminal({
     idx = 1,
     create_with = ":Neomux"
 }) end, opts)
+map('t', '<leader>T', function() ht.gotoTerminal({
+    idx = 1,
+    create_with = ":Neomux"
+}) end, opts)
 for i=0,9,1 do -- mapping leader + digit to go for terminals
     map('n', '<leader>t'..i, function() ht.gotoTerminal({
+        idx = i,
+        create_with = ":Neomux"
+    }) end, opts)
+    map('t', '<leader>t'..i, function() ht.gotoTerminal({
         idx = i,
         create_with = ":Neomux"
     }) end, opts)
