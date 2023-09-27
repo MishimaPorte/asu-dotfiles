@@ -56,8 +56,8 @@ local function nav_prev()
 end
 
 htl.setup({})
-map('n', 'J', nav_prev, opts)
-map('n', 'K', nav_next, opts)
+map('n', 'H', nav_prev, opts)
+map('n', 'L', nav_next, opts)
 
 local tabline = 'harpoon'
 map('n', '<F3>', function()
@@ -72,13 +72,13 @@ map('n', '<F3>', function()
             brackets = { '', '' },     -- file name brackets surrounding
             inactive_tab_max_length = 0  -- max length of inactive tab titles, 0 to ignore
         })
-        map('n', 'J', '<cmd>:tabp<CR>')
-        map('n', 'K', '<cmd>:tabn<CR>')
+        map('n', 'H', '<cmd>:tabp<CR>')
+        map('n', 'L', '<cmd>:tabn<CR>')
         tabline = 'orig'
     elseif (tabline == 'orig') then
         htl.setup({}) 
-        map('n', 'J', nav_prev, opts)
-        map('n', 'K', nav_next, opts)
+        map('n', 'H', nav_prev, opts)
+        map('n', 'L', nav_next, opts)
         tabline = 'harpoon'
     end
 end, opts)
@@ -110,6 +110,22 @@ map('n', '<leader>T', function() ht.gotoTerminal({
 }) end, opts)
 map('t', '<leader>T', function() ht.gotoTerminal({
     idx = 1,
+    create_with = ":Neomux"
+}) end, opts)
+map('n', '<leader>Y', function() ht.gotoTerminal({
+    idx = 2,
+    create_with = ":Neomux"
+}) end, opts)
+map('t', '<leader>Y', function() ht.gotoTerminal({
+    idx = 2,
+    create_with = ":Neomux"
+}) end, opts)
+map('n', '<leader>U', function() ht.gotoTerminal({
+    idx = 3,
+    create_with = ":Neomux"
+}) end, opts)
+map('t', '<leader>U', function() ht.gotoTerminal({
+    idx = 3,
     create_with = ":Neomux"
 }) end, opts)
 for i=0,9,1 do -- mapping leader + digit to go for terminals
