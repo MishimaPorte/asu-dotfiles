@@ -2,6 +2,7 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin')
 
+    
 Plug 'm4xshen/autoclose.nvim' -- autobrackets 30th of july year two thousand twenty third
 Plug 'tpope/vim-surround' -- surroundigs
 Plug 'preservim/nerdtree' -- filesystem browser
@@ -26,6 +27,7 @@ Plug "tweekmonster/impsort.vim"
 Plug 'tanvirtin/vgit.nvim' -- git integration
 Plug 'crispgm/nvim-tabline'
 Plug 'anuvyklack/pretty-fold.nvim' -- pretty folding 28 08 23
+Plug "rest-nvim/rest.nvim" -- rest api thing 10 02 2023
 
 Plug 'mfussenegger/nvim-dap' -- DAP, finally. 20 06 2023
 Plug 'rcarriga/nvim-dap-ui' -- vscode-like dap monstrocity, 22 06 2023
@@ -64,7 +66,10 @@ Plug 'kyazdani42/nvim-web-devicons' -- working finally, 22 06 2023
 
 vim.call('plug#end')
 
-
+local rest = require("rest-nvim")
+rest.setup()
+vim.keymap.set('n', '<leader>rr', rest.run, opts)
+vim.keymap.set('n', '<leader>rl', rest.last, opts)
 require("autoclose").setup({})
 require('pretty-fold').setup({
    sections = {
