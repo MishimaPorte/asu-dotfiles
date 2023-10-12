@@ -119,6 +119,11 @@ lspconfig['helm_ls'].setup{
     capabilities = capabilities,
 }
 
+-- lspconfig['jdtls'].setup{
+--     on_attach = on_attach,
+--     flags = lsp_flags,
+--     capabilities = capabilities,
+-- }
 lspconfig['pyright'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
@@ -232,4 +237,3 @@ require "lsp_signature".setup({
   select_signature_key = "<A-m>", -- cycle to next signature, e.g. '<M-n>' function overloading
   move_cursor_key = nil, -- imap, use nvim_set_current_win to move cursor between current win and floating
 })
-

@@ -2,6 +2,7 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin')
 
+Plug 'mfussenegger/nvim-jdtls' -- java (experimental) 10 10 23
     
 Plug 'm4xshen/autoclose.nvim' -- autobrackets 30th of july year two thousand twenty third
 Plug 'tpope/vim-surround' -- surroundigs
