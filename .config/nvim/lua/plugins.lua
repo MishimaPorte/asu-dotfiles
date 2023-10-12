@@ -68,6 +68,7 @@ Plug 'kyazdani42/nvim-web-devicons' -- working finally, 22 06 2023
 vim.call('plug#end')
 
 local rest = require("rest-nvim")
+rest.setup({skip_ssl_verification = true})
 vim.keymap.set('n', '<leader>rr', rest.run, opts)
 vim.keymap.set('n', '<leader>rl', rest.last, opts)
 require("autoclose").setup({})
