@@ -1,17 +1,18 @@
 local lspconfig = require('lspconfig')
 local util = require('lspconfig.util')
+local bufopts = { noremap=true, silent=true, buffer=bufnr }
+-- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help, bufopts)
+vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
+vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
+vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+vim.keymap.set('v', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
 local on_attach = function(client, bufnr)
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<leader>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
 end
 
 local luasnip = require("luasnip")
@@ -106,7 +107,8 @@ cmp.setup.cmdline(':', {
   })
 })
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local lsp_flags = {
   debounce_text_changes = 150,
