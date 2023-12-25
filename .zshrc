@@ -5,9 +5,11 @@ SAVEHIST=1500
 export GITLAB_TOKEN="glpat-FFSvt-U7GywvNoZRe1ky"
 export GITLAB_URI="https://git.apsolutions.ru"
 export EDITOR=nvim
+export ANDROID_NDK=/opt/android-ndk
+export NDK_TOOLCHAIN_DIR=$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64
 VIRTUAL_ENV_DISABLE_PROMPT=true
 fpath+=~/.zfunc
-PATH=/home/asu/go/bin:/home/asu/.local/bin:/home/asu/.myapps:/home/asu/.scripts:$(pyenv root)/bin:$PATH
+PATH=/home/asu/software:/home/asu/go/bin:/home/asu/.local/bin:/home/asu/.myapps:/home/asu/.scripts:$(pyenv root)/bin:$PATH
 PYENV_ROOT=$(pyenv root)
 eval "$(pyenv init -)"
 alias gurl="grpc_cli"
@@ -17,7 +19,8 @@ alias jgv="json-glib-validate"
 alias gcam="git commit -am"
 alias dprune='docker rm $(docker stop $(docker container ls -aq))'
 alias d="docker"
-alias z="zellij"
+alias ze="zellij"
+alias zs="zellij"
 alias pvim="poetry run nvim"
 alias library="calibre"
 alias post='curl -X POST -H "Content-Type: application\json"'
@@ -52,6 +55,9 @@ function prechpwdls {
 
 #function calls
 compinit
+
+#shell addons
+eval "$(zoxide init zsh)"
 
 
 #hooks
