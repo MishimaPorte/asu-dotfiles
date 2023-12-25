@@ -21,3 +21,4 @@ nnoremap <Space> @q\
 nnoremap <C-Space> \
 vnoremap <C-Space> \
 ")
+vim.api.nvim_create_user_command('Baza', 'lua require("dbee").open()', {})

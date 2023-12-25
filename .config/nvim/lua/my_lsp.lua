@@ -1,5 +1,6 @@
 local lspconfig = require('lspconfig')
 local util = require('lspconfig.util')
+local on_attach = function(client, bufnr)
 local bufopts = { noremap=true, silent=true, buffer=bufnr }
 -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
@@ -12,7 +13,6 @@ vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
 vim.keymap.set('v', '<leader>ca', vim.lsp.buf.code_action, bufopts)
 vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-local on_attach = function(client, bufnr)
 end
 
 local luasnip = require("luasnip")
@@ -137,11 +137,11 @@ lspconfig['helm_ls'].setup{
     capabilities = capabilities,
 }
 
--- lspconfig['jdtls'].setup{
---     on_attach = on_attach,
---     flags = lsp_flags,
---     capabilities = capabilities,
--- }
+lspconfig['jdtls'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+}
 lspconfig['pyright'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
@@ -164,6 +164,13 @@ lspconfig['rust_analyzer'].setup{
     settings = {
       ["rust-analyzer"] = {}
     }
+}
+
+lspconfig['zls'].setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = lsp_flags,
+    filetypes = { 'zig' },
 }
 
 lspconfig['hls'].setup{
@@ -195,6 +202,7 @@ lspconfig.clangd.setup {
   capabilities = capabilities,
     on_attach = on_attach,
     flags = lsp_flags,
+    -- cmd = { 'clangd', '-xc' },
     -- filetypes = { 'haskell', 'lhaskell', 'cabal' },
 }
 
