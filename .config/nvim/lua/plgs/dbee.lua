@@ -149,8 +149,8 @@ db.setup({
     -- commands that opens the window if the window is closed - for drawer/editor/result
     -- string or function
     window_commands = {
-      drawer = "to 40vsplit",
-      result = "bo 15split",
+      drawer = "to 20vsplit",
+      result = "bo 10split",
       editor = function()
         vim.cmd("new")
         vim.cmd("only")
@@ -177,3 +177,5 @@ db.setup({
     end,
   },
 })
+vim.api.nvim_create_user_command('BOpen', 'lua require("dbee").open()', {})
+vim.api.nvim_create_user_command('BClose', 'lua require("dbee").close()', {})
