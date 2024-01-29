@@ -6,6 +6,7 @@ export GITLAB_TOKEN="glpat-FFSvt-U7GywvNoZRe1ky"
 export GITLAB_URI="https://git.apsolutions.ru"
 export EDITOR=nvim
 export ANDROID_NDK=/opt/android-ndk
+export ANDROID_HOME=/opt/android-sdk
 export NDK_TOOLCHAIN_DIR=$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64
 VIRTUAL_ENV_DISABLE_PROMPT=true
 fpath+=~/.zfunc
