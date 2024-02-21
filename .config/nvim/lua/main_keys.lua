@@ -1,7 +1,7 @@
 local opts = { noremap=true, silent=true }
 
 vim.keymap.set('n', '<F8>', '<cmd>:TagbarToggle<CR>') 
-vim.keymap.set('n', '<F2>', '<cmd>:NERDTree<CR>') 
+vim.keymap.set('n', '<F2>', '<cmd>:CHADopen<CR>') 
 
 vim.keymap.set('n', '<leader><Tab>', '<cmd>:tabnew<CR>')
 vim.keymap.set('n', '<leader>q', '<cmd>:tabclose<CR>')

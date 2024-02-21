@@ -8,7 +8,8 @@ Plug 'godlygeek/tabular'                                                  -- ali
 
 Plug 'm4xshen/autoclose.nvim'                                             -- autobrackets 30th of july year two thousand twenty third
 Plug 'tpope/vim-surround'                                                 -- surroundigs
-Plug 'preservim/nerdtree'                                                 -- filesystem browser
+Plug ('ms-jpq/chadtree', {branch = 'chad', ['do'] = 'python3 -m chadtree deps'}) -- filesystem browser
+-- Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary'                                               -- gcc
 Plug 'vim-airline/vim-airline'                                            -- status bar
 Plug 'lifepillar/pgsql.vim'                                               -- psql syntax highlight

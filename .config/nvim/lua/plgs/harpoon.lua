@@ -32,6 +32,7 @@ local function nav_next()
     end
     h_ui.nav_file(current_index)
 end
+
 local function nav_prev()
     local current_index = hm.get_current_index()
     local number_of_items = hm.get_length()
