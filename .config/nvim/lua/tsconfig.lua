@@ -35,4 +35,7 @@ ts.setup {
     },
   }
 }
+
+require'treesitter-context'.setup{enable = false} -- this shit installed itself, so i believe it is now a part of a canonical treesitter installation
+                                                  -- i do not need this clownry, so here is how to disable it
 vim.api.nvim_create_autocmd("VimEnter", {command = "TSEnable highlight"})

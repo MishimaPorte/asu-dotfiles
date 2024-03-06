@@ -1,29 +1,32 @@
 dap = require("dap")
 local util = require('lspconfig/util')
 local opts = { noremap=true, silent=true }
+local path = util.path
 map = vim.keymap.set
 
 map('n', 'B', dap.toggle_breakpoint, opts) -- set/remove breakpoint
-map('n', '<leader>c', dap.continue, opts)
+map('n', '<leader>C', dap.continue, opts)
 map('n', '<leader>x', dap.terminate, opts)
 map('n', 'F', dap.step_over, opts) -- dont know what is it
 map('n', '<leader>F', dap.step_into, opts) -- step into (a function)
 map('n', '<leader>u', dap.step_out, opts) -- step out (of a function)
+vim.api.nvim_create_user_command('DEBUG', dap.continue, {})
 
 dap.repl.omnifunc = vim.lsp.omnifunc
-
-local getVenv = function()
-  local cwd = vim.fn.getcwd()
-  local envPath = os.getenv("VIRTUAL_ENV")
-  if vim.fn.executable(envPath .. '/bin/python') == 1 then
-    return envPath .. '/bin/python'
-  elseif vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
-    return cwd .. '/venv/bin/python'
-  elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
-    return cwd .. '/.venv/bin/python'
-  else
-    return '/usr/bin/python'
+local function getVenv(workspace)
+  -- Use activated virtualenv.
+  if vim.env.VIRTUAL_ENV then
+    return path.join(vim.env.VIRTUAL_ENV, 'bin', 'python')
   end
+  -- Find and use virtualenv via poetry in workspace directory.
+  local match = vim.fn.glob(path.join(workspace, 'poetry.lock'))
+  if match ~= '' then
+    local venv = vim.fn.trim(vim.fn.system('poetry env info -p'))
+    return path.join(venv, 'bin', 'python')
+  end
+
+  -- Fallback to system Python.
+   return vim.fn.exepath('python3') or vim.fn.exepath('python') or 'python'
 end
 
 dap.adapters.cppdbg = {
@@ -61,9 +64,7 @@ dap.configurations.rust = dap.configurations.cpp
 
 dap.adapters.python = function(cb, config)
   if config.request == 'attach' then
-    ---@diagnostic disable-next-line: undefined-field
     local port = (config.connect or config).port
-    ---@diagnostic disable-next-line: undefined-field
     local host = (config.connect or config).host or '127.0.0.1'
     cb({
       type = 'server',
@@ -87,33 +88,30 @@ end
 
 dap.configurations.python = {
   {
-    type = 'python'; -- the type here established the link to the adapter definition: `dap.adapters.python`
+    type = 'python'; 
     request = 'launch';
     name = "proj";
-    
-    program = "src"; --util.root_pattern('pyproject.toml')() .. '/src/__main__.py'; -- This configuration will launch the current file if used.
+    program = "src"; 
     pythonPath = getVenv;
   },
-  -- this was an attempt to run tests in debugger
-  -- {
-  --   type = 'python'; -- the type here established the link to the adapter definition: `dap.adapters.python`
-  --   request = 'launch';
-  --   name = "test";
-  --   
-  --   program = "-m pytest"; --util.root_pattern('pyproject.toml')() .. '/src/__main__.py'; -- This configuration will launch the current file if used.
-  --   pythonPath = getVenv;
-  -- },
+  {
+    type = 'python'; 
+    request = 'launch';
+    name = "test";
+    module = 'pytest';
+    pythonPath = getVenv;
+  },
 }
 
 --i will never remember this many hotkeys
-
 dapui = require("dapui")
 dapui.setup()
 -- this anon function shit is needed to jump into floating windows once they are open
-map('n', '<leader>R', dapui.toggle, opts) -- open many dapui windows to see my stupid code working
+map('n', '<F7>', dapui.toggle, opts) -- open many dapui windows to see my stupid code working
 map('n', '<leader>E', function() dapui.eval(); dapui.eval() end, opts) -- evaluate expression
 map('v', '<leader>E', function() dapui.eval(); dapui.eval() end, opts) -- evaluate expression in chunks with visual mode
-map('n', '<leader>r', function() dapui.float_element("repl")  end, opts) -- open floating repl - sounds convenient
+map('n', '<leader>R', function() dapui.float_element("repl")  end, opts) -- open floating repl - sounds convenient
+-- map('n', '<leader>C', function() dapui.float_element("console")  end, opts) -- floating console - does nothing in python
 map('n', '<leader>fq', function() dapui.float_element("breakpoints"); dapui.float_element("breakpoints") end, opts) -- open floating breakpoints pane
 map('n', '<leader>fw', function() dapui.float_element("watches"); dapui.float_element("watches")end, opts) -- open floating breakpoints pane
 map('n', '<leader>fs', function() dapui.float_element("stacks"); dapui.float_element("stacks") end, opts) -- open floating stack pane

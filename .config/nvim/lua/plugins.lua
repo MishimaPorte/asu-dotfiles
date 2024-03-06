@@ -36,6 +36,7 @@ Plug "hsanson/vim-android"                                                -- for
 
 Plug 'mfussenegger/nvim-dap'                                              -- DAP, finally. 20 06 2023
 Plug 'rcarriga/nvim-dap-ui'                                               -- vscode-like dap monstrocity, 22 06 2023
+Plug 'leoluz/nvim-dap-go'                                                 -- GOLANG DEBUGGING TECHNOLOGY, the sixth of march, year 2024
 
 Plug 'sudormrfbin/cheatsheet.nvim'                                        -- hotkey finder
 Plug 'nvim-lua/popup.nvim'
@@ -94,10 +95,11 @@ require('Comment').setup({
     opleader = { line = '|'},
 })
 
+require("plgs.dap")
 require("plgs.gonvim")
 require("plgs.py")
 require("plgs.git")
-require("plgs.dap")
+
 require("plgs.telescope")
 -- require("plgs.bar")
 require("plgs.harpoon")
