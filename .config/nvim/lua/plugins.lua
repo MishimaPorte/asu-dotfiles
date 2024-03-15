@@ -8,6 +8,7 @@ Plug 'mfussenegger/nvim-jdtls'                                            -- jav
 Plug 'godlygeek/tabular'                                                  -- alignment plugin, 11 01 24
 Plug ('vhyrro/luarocks.nvim', {rocks = { "fzy", "pathlib.nvim ~> 1.0" }})
 
+Plug 'perillo/qbe.vim'                                                    -- qbe (compiler backend) plugin 02 03 2024
 Plug 'm4xshen/autoclose.nvim'                                             -- autobrackets 30th of july year two thousand twenty third
 Plug 'tpope/vim-surround'                                                 -- surroundigs
 Plug ('ms-jpq/chadtree', {branch = 'chad', ['do'] = 'python3 -m chadtree deps'}) -- filesystem browser
@@ -118,3 +119,4 @@ require("plgs.telescope")
 -- require("plgs.bar")
 require("plgs.harpoon")
 require("plgs.dbee")
+
