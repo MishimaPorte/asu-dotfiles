@@ -25,7 +25,7 @@ local function get_python_path(workspace)
   -- Find and use virtualenv via poetry in workspace directory.
   local match = vim.fn.glob(path.join(workspace, 'poetry.lock'))
   if match ~= '' then
-    local venv = vim.fn.trim(vim.fn.system('poetry env info -p'))
+    local venv = vim.fn.trim(vim.fn.system('poetry env info -p 2> /dev/null'))
     return path.join(venv, 'bin', 'python')
   end
 
@@ -238,29 +238,13 @@ cmp.setup.filetype('gitcommit', {
     })
 })
 
-cmp.setup.filetype('python', {
-    sources = cmp.config.sources({
-      { name = 'nvim_lsp' }, 
-    })
-})
+cmp.setup.filetype('python', {})
 
-cmp.setup.filetype('helm', {
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' }, 
-  })
-})
-
-cmp.setup.filetype('go', {
-    sources = cmp.config.sources({
-      { name = 'nvim_lsp' }, 
-    })
-})
-cmp.setup.filetype('go.mod', {
-    sources = cmp.config.sources({
-      { name = 'nvim_lsp' }, 
-    })
-})
+cmp.setup.filetype('helm', {})
+cmp.setup.filetype('go', {})
+cmp.setup.filetype('go.mod', {})
 cmp.setup.cmdline({ '/', '?' }, {
+
 mapping = cmp.mapping.preset.cmdline(),
     sources = {
       { name = 'buffer' }

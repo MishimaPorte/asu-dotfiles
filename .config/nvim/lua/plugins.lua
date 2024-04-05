@@ -2,9 +2,11 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin')
 
+Plug 'nvim-neotest/nvim-nio'
 Plug 'mfussenegger/nvim-jdtls'                                            -- java (experimental) 10 10 23
 
 Plug 'godlygeek/tabular'                                                  -- alignment plugin, 11 01 24
+Plug ('vhyrro/luarocks.nvim', {rocks = { "fzy", "pathlib.nvim ~> 1.0" }})
 
 Plug 'm4xshen/autoclose.nvim'                                             -- autobrackets 30th of july year two thousand twenty third
 Plug 'tpope/vim-surround'                                                 -- surroundigs
@@ -21,7 +23,7 @@ Plug 'preservim/tagbar'                                                   -- tag
 Plug 'terryma/vim-multiple-cursors'                                       -- multipliple cursor
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'nvim-lua/plenary.nvim'
-Plug ('nvim-telescope/telescope.nvim', { tag= '0.1.1' })                  -- file searching tool
+Plug ('nvim-telescope/telescope.nvim', { tag= '0.1.4' })                  -- file searching tool
 Plug 'mrcjkb/haskell-tools.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'                                    -- tresitter for intelligent syntax highlight
 Plug 'nvim-treesitter/playground'
@@ -66,16 +68,28 @@ Plug "towolf/vim-helm"                                                    -- hel
 
 Plug ('olexsmir/gopher.nvim', {config = function()
       require('plugins.gopher')
-    end})
+end})
+
 Plug 'ray-x/go.nvim'
 Plug 'kyazdani42/nvim-web-devicons'                                       -- working finally, 22 06 2023
 
 vim.call('plug#end')
 
+require("luarocks-nvim").setup({rocks = { "lua-curl", "mimetypes", "xml2lua" }})
+require("nio")
+
 local rest = require("rest-nvim")
-rest.setup({skip_ssl_verification = true})
-vim.keymap.set('n', '<leader>rr', rest.run, opts)
-vim.keymap.set('n', '<leader>rl', rest.last, opts)
+rest.setup({
+    skip_ssl_verification = true,
+    result = {
+        split = {
+            stay_in_current_window_after_split = false,
+        }
+    }
+})
+
+vim.keymap.set('n', '<leader>rr', "<cmd>:Rest run<CR>", opts)
+vim.keymap.set('n', '<leader>rl', "<cmd>:Rest run last<CR>", opts)
 require("autoclose").setup({})
 require('pretty-fold').setup({
    sections = {
