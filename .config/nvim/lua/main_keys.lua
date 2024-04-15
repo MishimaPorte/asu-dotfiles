@@ -11,18 +11,18 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
 
-
-vim.cmd("\
-tnoremap <C-h> <C-\\><C-o><C-w>h\
-tnoremap <C-j> <C-\\><C-o><C-w>j\
-tnoremap <C-k> <C-\\><C-o><C-w>k\
-tnoremap <C-l> <C-\\><C-o><C-w>l\
-nnoremap <C-h> <C-w>h\
-nnoremap <C-j> <C-w>j\
-nnoremap <C-k> <C-w>k\
-nnoremap <C-l> <C-w>l\
-nnoremap <Space> @q\
-nnoremap <C-Space> \
-vnoremap <C-Space> \
-")
+vim.cmd([[
+tnoremap <C-h> <C-\\><C-o><C-w>h
+tnoremap <C-j> <C-\\><C-o><C-w>j
+tnoremap <C-k> <C-\\><C-o><C-w>k
+tnoremap <C-l> <C-\\><C-o><C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <Space> @q
+nnoremap <C-Space> 
+vnoremap <C-Space> 
+vnoremap <leader>e :!sh<CR>
+]])
 vim.api.nvim_create_user_command('Baza', 'lua require("dbee").open()', {})
