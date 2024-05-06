@@ -34,7 +34,7 @@ Plug "tweekmonster/impsort.vim"
 Plug 'tanvirtin/vgit.nvim'                                                -- git integration
 Plug 'crispgm/nvim-tabline'
 Plug 'anuvyklack/pretty-fold.nvim'                                        -- pretty folding 28 08 23
-Plug "rest-nvim/rest.nvim"                                                -- rest api thing 10 02 2023
+Plug "BlackLight/nvim-http"                                               -- new http client
 Plug "hsanson/vim-android"                                                -- for android development presumably 27 01 2024
 
 Plug 'mfussenegger/nvim-dap'                                              -- DAP, finally. 20 06 2023
@@ -76,21 +76,9 @@ Plug 'kyazdani42/nvim-web-devicons'                                       -- wor
 
 vim.call('plug#end')
 
-require("luarocks-nvim").setup({rocks = { "lua-curl", "mimetypes", "xml2lua" }})
-require("nio")
+vim.keymap.set('n', '<leader>rr', "<cmd>:Http<CR>", opts)
+vim.keymap.set('v', '<leader>rr', "<cmd>:Http<CR>", opts)
 
-local rest = require("rest-nvim")
-rest.setup({
-    skip_ssl_verification = true,
-    result = {
-        split = {
-            stay_in_current_window_after_split = false,
-        }
-    }
-})
-
-vim.keymap.set('n', '<leader>rr', "<cmd>:Rest run<CR>", opts)
-vim.keymap.set('n', '<leader>rl', "<cmd>:Rest run last<CR>", opts)
 require("autoclose").setup({})
 require('pretty-fold').setup({
    sections = {
