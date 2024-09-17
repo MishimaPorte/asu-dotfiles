@@ -12,8 +12,8 @@ Plug 'perillo/qbe.vim'                                                    -- qbe
 Plug 'm4xshen/autoclose.nvim'                                             -- autobrackets 30th of july year two thousand twenty third
 Plug 'tpope/vim-surround'                                                 -- surroundigs
 Plug ('ms-jpq/chadtree', {branch = 'chad', ['do'] = 'python3 -m chadtree deps'}) -- filesystem browser
--- Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary'                                               -- gcc
+Plug 'tpope/vim-fugitive'                                                 -- vim git shit cause the mustache guy recommended
 Plug 'vim-airline/vim-airline'                                            -- status bar
 Plug 'lifepillar/pgsql.vim'                                               -- psql syntax highlight
 Plug 'ap/vim-css-color'                                                   -- color name highlighter
@@ -41,8 +41,8 @@ Plug 'mfussenegger/nvim-dap'                                              -- DAP
 Plug 'rcarriga/nvim-dap-ui'                                               -- vscode-like dap monstrocity, 22 06 2023
 Plug 'leoluz/nvim-dap-go'                                                 -- GOLANG DEBUGGING TECHNOLOGY, the sixth of march, year 2024
 
-Plug 'sudormrfbin/cheatsheet.nvim'                                        -- hotkey finder
-Plug 'nvim-lua/popup.nvim'
+-- Plug 'sudormrfbin/cheatsheet.nvim'                                        -- hotkey finder
+-- Plug 'nvim-lua/popup.nvim'
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'onsails/lspkind-nvim'
@@ -64,7 +64,6 @@ Plug 'folke/todo-comments.nvim'                                           -- tod
 Plug "jose-elias-alvarez/null-ls.nvim"
 
 Plug "MunifTanjim/nui.nvim"
-Plug "kndndrj/nvim-dbee"
 Plug "towolf/vim-helm"                                                    -- helm charts 24 08 2023
 
 Plug ('olexsmir/gopher.nvim', {config = function()
@@ -104,7 +103,4 @@ require("plgs.py")
 require("plgs.git")
 
 require("plgs.telescope")
--- require("plgs.bar")
 require("plgs.harpoon")
-require("plgs.dbee")
-
