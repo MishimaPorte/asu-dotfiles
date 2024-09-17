@@ -61,15 +61,8 @@ lspconfig['pyright'].setup{
        client.config.settings.python.pythonPath = get_python_path(client.config.root_dir)
     end,
     before_init = function(_, config)
-    local p
-    if vim.env.VIRTUAL_ENV then
-        p = lsp_util.path.join(vim.env.VIRTUAL_ENV, "bin", "python3")
-    else
-        p = utils.find_cmd("python3", ".venv/bin", config.root_dir)
-    end
-    print(get_python_path(config.root_dir))
-    config.settings.python.pythonPath = get_python_path(config.root_dir)
-end,
+        config.settings.python.pythonPath = get_python_path(config.root_dir)
+    end,
 }
 
 lspconfig['rust_analyzer'].setup{
