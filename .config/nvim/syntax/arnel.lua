@@ -1,5 +1,5 @@
 vim.cmd('syn case match')
-vim.cmd('syn keyword arDeclSpec export extern return if else while')
+vim.cmd[[syn keyword arDeclSpec union enum struct type new module contract ]]
 vim.cmd('hi def link arDeclSpec Keyword')
 
 vim.cmd('syn region arComment start="\\\\\\\\" end="$"')
@@ -15,123 +15,16 @@ vim.cmd[[syn match arNumber "\v<\d+"]]
 vim.cmd('hi def link arFloat Number')
 vim.cmd('hi def link arNumber Number')
 
-vim.cmd('hi def link arBuiltinType Type')
-vim.cmd[[syn keyword arBuiltinType int
-            \ void
-            \ str
-            \ float
-            \ double
-            \ u8
-            \ u16
-            \ u32
-            \ u64
-            \ i8
-            \ i16
-            \ i32
-            \ i64
-            \ bool ]]
+vim.cmd[[syn match arMacro  "\v\@([a-z_A-Z0-9]*)"]]
+vim.cmd[[syn match arFieldModifier  "\v\$([a-z_A-Z0-9]*)"]]
+vim.cmd[[syn match arTypeSpecifier  "\v#([a-z_A-Z0-9 ]*)" contains=arTypeArg]]
+vim.cmd[[syn match arTypeArg display contained /\v ([a-z_A-Z]*)/]]
 
--- vim.cmd('hi def link qbeInstruction Function')
---
--- " Instructions.
--- " Arithmetic and Bits.
---
--- " Memory.
--- syn keyword qbeInstruction alloc16
---             \ alloc4
---             \ alloc8
---             \ loadd
---             \ loadl
---             \ loads
---             \ loadsb
---             \ loadsh
---             \ loadsw
---             \ loadub
---             \ loaduh
---             \ loaduw
---             \ loadw
---             \ storeb
---             \ stored
---             \ storeh
---             \ storel
---             \ stores
---             \ storew
---
--- " Comparison.
--- syn keyword qbeInstruction ceqd
---             \ ceql
---             \ ceqs
---             \ ceqw
---             \ cged
---             \ cges
---             \ cgtd
---             \ cgts
---             \ cled
---             \ cles
---             \ cltd
---             \ clts
---             \ cned
---             \ cnel
---             \ cnes
---             \ cnew
---             \ cod
---             \ cos
---             \ csgel
---             \ csgew
---             \ csgtl
---             \ csgtw
---             \ cslel
---             \ cslew
---             \ csltl
---             \ csltw
---             \ cugel
---             \ cugew
---             \ cugtl
---             \ cugtw
---             \ culel
---             \ culew
---             \ cultl
---             \ cultw
---             \ cuod
---             \ cuos
---
--- " Conversions.
--- syn keyword qbeInstruction dtosi
---             \ dtoui
---             \ exts
---             \ extsb
---             \ extsh
---             \ extsw
---             \ extub
---             \ extuh
---             \ extuw
---             \ sltof
---             \ ultof
---             \ stosi
---             \ stoui
---             \ swtof
---             \ uwtof
---             \ truncd
---
--- " Cast and Copy, Call, Variadic, Phi and Jumps.
--- syn keyword qbeInstruction cast
---             \ copy
---             \ call
---             \ vastart
---             \ vaarg
---             \ phi
---             \ jmp
---             \ jnz
---             \ ret
---
--- " Keywords.
--- syn keyword qbeKeyword align data env export function section type
---
--- " Misc syntax.
---
---
---
--- let b:current_syntax = "qbe"
---
--- let &cpo = s:cpo_save
--- unlet! s:cpo_save
+vim.cmd[[hi arTypeArg guifg=#00ffff]]
+vim.cmd[[hi arTypeSpecifier guifg=#298699]]
+vim.cmd[[hi arFieldModifier guifg=#5b66d9]]
+vim.cmd[[hi arMacro guifg=#db64ff]]
+
+vim.cmd('hi def link arBuiltinType Type')
+vim.cmd[[syn keyword arBuiltinType string integer array boolean ]]
+

@@ -97,9 +97,27 @@ lspconfig['gopls'].setup{
     flags = lsp_flags,
     settings = {
         gopls = {
+            codelenses = {
+                gc_details = true,
+                generate = true,
+                regenerate_cgo = true,
+                run_govulncheck = true,
+                test = true,
+                tidy = true,
+                upgrade_dependency = true,
+                vendor = true,
+            },
+            annotations = {
+                escape = true,
+                inline = true,
+                bounds = true,
+            },
             analyses = {
+                fieldalignment = true,
+                nilness = true,
                 unusedparams = true,
-                shadow = true,
+                unusedwrite = true,
+                useany = true,
             },
             staticcheck = true,
         }

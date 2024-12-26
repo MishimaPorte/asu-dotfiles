@@ -1,1 +1,1 @@
-vim.cmd("au BufRead,BufNewFile *.ar set filetype=arnel")
+vim.cmd("au BufRead,BufNewFile *.arnel set filetype=arnel")

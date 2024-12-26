@@ -1,4 +1,14 @@
 local Plug = vim.fn['plug#']
+local chadtree_settings = {
+				xdg = true,
+				view = {
+					width = 60
+				},
+				ignore = {
+					name_exact = {"node_modules"}
+				}
+			}
+vim.api.nvim_set_var('chadtree_settings', chadtree_settings)
 
 vim.call('plug#begin')
 
@@ -12,6 +22,8 @@ Plug 'perillo/qbe.vim'                                                    -- qbe
 Plug 'm4xshen/autoclose.nvim'                                             -- autobrackets 30th of july year two thousand twenty third
 Plug 'tpope/vim-surround'                                                 -- surroundigs
 Plug ('ms-jpq/chadtree', {branch = 'chad', ['do'] = 'python3 -m chadtree deps'}) -- filesystem browser
+Plug 'tpope/vim-fugitive'                                                 -- git
+-- Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary'                                               -- gcc
 Plug 'tpope/vim-fugitive'                                                 -- vim git shit cause the mustache guy recommended
 Plug 'vim-airline/vim-airline'                                            -- status bar
@@ -72,11 +84,13 @@ end})
 
 Plug 'ray-x/go.nvim'
 Plug 'kyazdani42/nvim-web-devicons'                                       -- working finally, 22 06 2023
+Plug 'ray-x/guihua.lua'
 
 vim.call('plug#end')
 
 vim.keymap.set('n', '<leader>rr', "<cmd>:Http<CR>", opts)
 vim.keymap.set('v', '<leader>rr', "<cmd>:Http<CR>", opts)
+
 
 require("autoclose").setup({})
 require('pretty-fold').setup({

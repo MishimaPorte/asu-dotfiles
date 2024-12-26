@@ -1,0 +1,61 @@
+[colors.bright]
+black = "0x4b5263"
+blue = "0x9cc4ff"
+cyan = "0x9ee5ff"
+green = "0xacce91"
+magenta = "0xd4bfff"
+red = "0xff9e9d"
+white = "0xe5e9f0"
+yellow = "0xf9cbbd"
+
+[colors.normal]
+black = "0x1a1b26"
+blue = "0x7aa2f7"
+cyan = "0x7dcfff"
+green = "0x9ece6a"
+magenta = "0xbb9af7"
+red = "0xf7768e"
+white = "0xc0caf5"
+yellow = "0xe0af68"
+
+[colors.primary]
+background = "0x1a1b26"
+foreground = "0xc0caf5"
+
+[cursor]
+blink_interval = 500
+style = "Block"
+
+[font]
+size = 9
+
+[font.bold]
+family = "FiraCode"
+style = "Bold"
+
+[font.bold_italic]
+family = "Adobe Courier"
+style = "Bold Italic"
+
+[font.italic]
+family = "FiraCode"
+style = "Italic"
+
+[font.normal]
+family = "FiraCode Nerd Font"
+style = "Regular"
+
+[[keyboard.bindings]]
+action = "ToggleViMode"
+key = "I"
+mods = "Control"
+
+[shell]
+program = "zsh"
+
+[window]
+opacity = 0.9
+
+[window.padding]
+x = 15
+y = 15

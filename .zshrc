@@ -42,6 +42,7 @@ autoload -Uz compinit
 autoload -U add-zsh-hook
 
 
+export NB_MANAGEMENT_URL="https://vpn.apsolutions.ru:443"
 #functions
 function pr {
     if [[ -z $VIRTUAL_ENV ]];
@@ -64,3 +65,5 @@ eval "$(zoxide init zsh)"
 #hooks
 add-zsh-hook precmd pr 
 add-zsh-hook chpwd prechpwdls 
+shuf /home/asu/.config/.cowsay_lines -n 1 | cowsay -W 70
+. /opt/asdf-vm/asdf.sh
