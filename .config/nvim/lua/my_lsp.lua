@@ -97,6 +97,9 @@ lspconfig['gopls'].setup{
     flags = lsp_flags,
     settings = {
         gopls = {
+            buildFlags = (function()
+                return {"-tags=orion"}
+            end)(),
             codelenses = {
                 gc_details = true,
                 generate = true,

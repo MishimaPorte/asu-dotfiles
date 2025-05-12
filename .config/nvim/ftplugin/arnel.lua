@@ -1,5 +1,6 @@
 vim.cmd('setlocal expandtab')
 vim.cmd('setlocal tabstop=8')
+vim.cmd('setlocal autoindent')
 vim.cmd('setlocal softtabstop=4')
 vim.cmd('setlocal shiftwidth=4')
 vim.cmd('setlocal comments=:\\\\\\\\')

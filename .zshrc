@@ -65,5 +65,5 @@ eval "$(zoxide init zsh)"
 #hooks
 add-zsh-hook precmd pr 
 add-zsh-hook chpwd prechpwdls 
-shuf /home/asu/.config/.cowsay_lines -n 1 | cowsay -W 70
+shuf $HOME/.config/.cowsay_lines -n 1 | cowsay -W 70
 . /opt/asdf-vm/asdf.sh

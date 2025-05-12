@@ -1,6 +1,7 @@
 vim.cmd('filetype on')
 vim.cmd('filetype plugin on')
 vim.cmd('filetype indent on')
+vim.cmd('filetype plugin indent on')
 vim.opt.number = true
 vim.opt.syntax = "on"
 vim.opt.relativenumber = true

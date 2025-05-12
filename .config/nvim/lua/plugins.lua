@@ -42,7 +42,6 @@ Plug 'nvim-treesitter/nvim-treesitter'                                    -- tre
 Plug 'nvim-treesitter/playground'
 Plug 'folke/tokyonight.nvim'
 Plug "RRethy/nvim-base16"
-Plug "tweekmonster/impsort.vim"
 Plug 'tanvirtin/vgit.nvim'                                                -- git integration
 Plug 'crispgm/nvim-tabline'
 Plug 'anuvyklack/pretty-fold.nvim'                                        -- pretty folding 28 08 23
@@ -113,3 +112,4 @@ require("plgs.git")
 
 require("plgs.telescope")
 require("plgs.harpoon")
+

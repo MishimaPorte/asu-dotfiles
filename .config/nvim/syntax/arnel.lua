@@ -24,7 +24,8 @@ vim.cmd[[hi arTypeArg guifg=#00ffff]]
 vim.cmd[[hi arTypeSpecifier guifg=#298699]]
 vim.cmd[[hi arFieldModifier guifg=#5b66d9]]
 vim.cmd[[hi arMacro guifg=#db64ff]]
+vim.cmd[[hi arLexerMacro guifg=green]]
 
 vim.cmd('hi def link arBuiltinType Type')
-vim.cmd[[syn keyword arBuiltinType string integer array boolean ]]
+vim.cmd[[syn keyword arBuiltinType str int bool null ]]
 
