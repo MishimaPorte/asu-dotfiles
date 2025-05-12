@@ -36,6 +36,6 @@ ts.setup {
   }
 }
 
-require'treesitter-context'.setup{enable = false}
+-- require'treesitter-context'.setup{enable = false}
 
 vim.api.nvim_create_autocmd("VimEnter", {command = "TSEnable highlight"})

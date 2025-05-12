@@ -107,13 +107,12 @@ lspconfig['gopls'].setup{
                 upgrade_dependency = true,
                 vendor = true,
             },
-            annotations = {
-                escape = true,
-                inline = true,
-                bounds = true,
-            },
+            -- annotations = {
+            --     escape = true,
+            --     inline = true,
+            --     bounds = true,
+            -- },
             analyses = {
-                fieldalignment = true,
                 nilness = true,
                 unusedparams = true,
                 unusedwrite = true,
@@ -128,7 +127,6 @@ lspconfig.clangd.setup {
   capabilities = capabilities,
     on_attach = on_attach,
     flags = lsp_flags,
-    -- cmd = { 'clangd', '-xc' },
     -- filetypes = { 'haskell', 'lhaskell', 'cabal' },
 }
 

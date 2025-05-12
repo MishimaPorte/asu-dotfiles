@@ -27,30 +27,30 @@ blink_interval = 500
 style = "Block"
 
 [font]
-size = 9
+size = 22
 
 [font.bold]
-family = "FiraCode"
+family = "Iosevka"
 style = "Bold"
 
 [font.bold_italic]
-family = "Adobe Courier"
+family = "Iosevka"
 style = "Bold Italic"
 
 [font.italic]
-family = "FiraCode"
+family = "Iosevka"
 style = "Italic"
 
 [font.normal]
-family = "FiraCode Nerd Font"
+family = "Iosevka"
 style = "Regular"
 
 [[keyboard.bindings]]
 action = "ToggleViMode"
 key = "I"
-mods = "Control"
+mods = "Alt"
 
-[shell]
+[terminal.shell]
 program = "zsh"
 
 [window]
@@ -59,3 +59,5 @@ opacity = 0.9
 [window.padding]
 x = 15
 y = 15
+
+[terminal]

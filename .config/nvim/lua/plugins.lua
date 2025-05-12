@@ -36,7 +36,7 @@ Plug 'preservim/tagbar'                                                   -- tag
 Plug 'terryma/vim-multiple-cursors'                                       -- multipliple cursor
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'nvim-lua/plenary.nvim'
-Plug ('nvim-telescope/telescope.nvim', { tag= '0.1.4' })                  -- file searching tool
+Plug 'nvim-telescope/telescope.nvim'                  -- file searching tool
 Plug 'mrcjkb/haskell-tools.nvim'
 Plug 'nvim-treesitter/nvim-treesitter'                                    -- tresitter for intelligent syntax highlight
 Plug 'nvim-treesitter/playground'
@@ -46,9 +46,6 @@ Plug "tweekmonster/impsort.vim"
 Plug 'tanvirtin/vgit.nvim'                                                -- git integration
 Plug 'crispgm/nvim-tabline'
 Plug 'anuvyklack/pretty-fold.nvim'                                        -- pretty folding 28 08 23
-Plug "BlackLight/nvim-http"                                               -- new http client
-Plug "hsanson/vim-android"                                                -- for android development presumably 27 01 2024
-
 Plug 'mfussenegger/nvim-dap'                                              -- DAP, finally. 20 06 2023
 Plug 'rcarriga/nvim-dap-ui'                                               -- vscode-like dap monstrocity, 22 06 2023
 Plug 'leoluz/nvim-dap-go'                                                 -- GOLANG DEBUGGING TECHNOLOGY, the sixth of march, year 2024
@@ -71,7 +68,6 @@ Plug 'ray-x/lsp_signature.nvim'                                           -- fun
 Plug 'nvim-lua/plenary.nvim'
 Plug 'ThePrimeagen/harpoon'                                               -- some prime not working monstrocity, ?? 04 2023
 Plug 'numToStr/Comment.nvim'                                              -- comments
-Plug 'folke/todo-comments.nvim'                                           -- todos 22 06 2023
 
 Plug "jose-elias-alvarez/null-ls.nvim"
 
@@ -105,7 +101,6 @@ require('pretty-fold').setup({
    process_comment_signs = 'delete',
    add_close_pattern = true,
 })
-require('todo-comments').setup({})
 require('nvim-web-devicons').setup({ default = true; })
 require('Comment').setup({
     opleader = { line = '|'},
