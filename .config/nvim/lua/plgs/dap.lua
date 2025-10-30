@@ -8,7 +8,7 @@ map('n', 'B', dap.toggle_breakpoint, opts) -- set/remove breakpoint
 map('n', '<leader>C', dap.continue, opts)
 map('n', '<leader>x', dap.terminate, opts)
 map('n', 'F', dap.step_over, opts) -- dont know what is it
-map('n', '<leader>a', dap.step_into, opts) -- step into (a function)
+map('n', '<leader>F', dap.step_into, opts) -- step into (a function)
 map('n', '<leader>u', dap.step_out, opts) -- step out (of a function)
 vim.api.nvim_create_user_command('DEBUG', dap.continue, {})
 
@@ -87,6 +87,13 @@ dap.adapters.python = function(cb, config)
 end
 
 dap.configurations.python = {
+  {
+    type = 'python'; 
+    request = 'launch';
+    name = "main.py";
+    program = "main.py"; 
+    pythonPath = getVenv;
+  },
   {
     type = 'python'; 
     request = 'launch';

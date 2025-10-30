@@ -2,8 +2,7 @@ local lspconfig = require('lspconfig')
 local util = require('lspconfig.util')
 local path = util.path
 local on_attach = function(client, bufnr)
-
-local bufopts = { noremap=true, silent=true, buffer=bufnr }
+    local bufopts = { noremap=true, silent=true, buffer=bufnr }
 -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
@@ -22,6 +21,12 @@ local function get_python_path(workspace)
   if vim.env.VIRTUAL_ENV then
     return path.join(vim.env.VIRTUAL_ENV, 'bin', 'python')
   end
+
+  local match = vim.fn.glob(path.join(workspace, '.venv'))
+  if match ~= '' then
+    return path.join(workspace, '.venv', 'bin', 'python')
+  end
+
   -- Find and use virtualenv via poetry in workspace directory.
   local match = vim.fn.glob(path.join(workspace, 'poetry.lock'))
   if match ~= '' then
@@ -53,10 +58,21 @@ lspconfig['jdtls'].setup{
     capabilities = capabilities,
 }
 
+lspconfig['ruff'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+    root_dir = util.root_pattern('.git'),
+    before_init = function(_, config)
+      config.settings.interpreter = get_python_path(config.root_dir)
+    end,
+}
+
 lspconfig['pyright'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
     capabilities = capabilities,
+    root_dir = util.root_pattern('.git'),
     on_init = function(client)  
        client.config.settings.python.pythonPath = get_python_path(client.config.root_dir)
     end,
@@ -126,12 +142,11 @@ lspconfig['gopls'].setup{
     }
 }
 
-lspconfig.clangd.setup {
-  capabilities = capabilities,
-    on_attach = on_attach,
-    flags = lsp_flags,
-    -- filetypes = { 'haskell', 'lhaskell', 'cabal' },
-}
+-- lspconfig.clangd.setup {
+--   capabilities = capabilities,
+--     on_attach = on_attach,
+--     flags = lsp_flags,
+-- }
 
 
 
@@ -270,3 +285,14 @@ cmp.setup.cmdline(':', {
   })
 })
 
+local diagnostics_active = true
+local function toggle_diagnostics()
+    if diagnostics_active then
+        diagnostics_active = false
+        vim.diagnostic.disable()
+    else
+        diagnostics_active = true
+        vim.diagnostic.enable()
+    end
+end
+vim.keymap.set('n', '<leader>dh', toggle_diagnostics, { noremap = true, silent = true, desc = "Toggle vim diagnostics" })

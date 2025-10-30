@@ -1,5 +1,5 @@
 vim.cmd('syn case match')
-vim.cmd[[syn keyword arDeclSpec union enum struct type new module contract ]]
+vim.cmd[[syn keyword arDeclSpec from as import union enum struct type module contract ]]
 vim.cmd('hi def link arDeclSpec Keyword')
 
 vim.cmd('syn region arComment start="\\\\\\\\" end="$"')
@@ -28,4 +28,5 @@ vim.cmd[[hi arLexerMacro guifg=green]]
 
 vim.cmd('hi def link arBuiltinType Type')
 vim.cmd[[syn keyword arBuiltinType str int bool null ]]
+
 
