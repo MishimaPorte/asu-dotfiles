@@ -11,65 +11,37 @@
 
 set $mod Mod4
 
-font pango:JetBrainsmono Font 0
-
-# Start XDG autostart .desktop files using dex. See also
-# https://wiki.archlinux.org/index.php/XDG_Autostart
-exec --no-startup-id dex --autostart --environment i3
-
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+# font pango:IosevkaExtended Term 18
 
 # Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
+#set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-# Use Mouse+$mod to drag floating windows to their wanted position
+font pango:IosevkaExtended Nerd Font 1
+default_border none
+default_floating_border none
+titlebar_padding 1
+titlebar_border_thickness 0
+
 floating_modifier $mod
-
-# move tiling windows via drag & drop by left-clicking into the title bar,
-# or left-clicking anywhere into the window while holding the floating modifier.
-tiling_drag modifier titlebar
-
-# start a terminal
 bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+Return exec alacritty -e zellij 
-
-# kill focused window
 bindsym $mod+q kill
+bindsym $mod+d exec "wofi --show drun"
 
-# start dmenu (a program launcher)
-# bindsym $mod+d exec "wofi --normal-window --mode run"
-# A more modern dmenu replacement is rofi:
-bindsym $mod+d exec "rofi -modi drun,run -show drun"
-# There also is i3-dmenu-desktop which only displays applications shipping a
-# .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
-
-# change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
 
-# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-# move focused window
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
@@ -88,24 +60,19 @@ bindsym $mod+g split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-
 # change container layout (stacked, tabbed, toggle split)
+
+bindsym $mod+f fullscreen toggle
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
+bindsym $mod+a focus parent
+bindsym $mod+x focus child
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
+#bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-bindsym $mod+x focus child
+#bindsym $mod+space focus mode_toggle
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -120,15 +87,18 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-workspace $ws1 output HDMI1
-workspace $ws2 output HDMI2
-workspace $ws3 output HDMI2
-workspace $ws4 output HDMI2
-workspace $ws5 output HDMI1
-workspace $ws6 output HDMI2
+output HDMI-A-1 mode 2560x1440 pos 0 0
+output HDMI-A-2 mode 2560x1440 pos 2560 0
 
-bindsym $mod+Control+h move workspace to output HDMI1
-bindsym $mod+Control+l move workspace to output HDMI2
+workspace $ws1 output HDMI-A-1
+workspace $ws2 output HDMI-A-2
+workspace $ws3 output HDMI-A-2
+workspace $ws4 output HDMI-A-2
+workspace $ws5 output HDMI-A-1
+workspace $ws6 output HDMI-A-2
+
+bindsym $mod+Control+h move workspace to output HDMI-A-1
+bindsym $mod+Control+l move workspace to output HDMI-A-2
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -157,9 +127,8 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+r restart # exit i3 (logs you out of your X session)
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -189,12 +158,17 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
 bar {
         status_command i3status
-        font pango:Fira Code Font 13
+        font pango:IosevkaExtended Nerd Font Regular 16
 }
 
-bindsym $mod+Control+x exec i3lock
+input * {
+    xkb_layout "us,ru"
+    xkb_options "ctrl:nocaps,grp:alt_shift_toggle"
+}
+
+bindsym $mod+Control+x exec swaylock
+bindsym $mod+Control+s exec slurp | grim -g - /home/asura/pics/screenshot.png
+
+output * background /home/asura/pics/lunatic_magician.png fill

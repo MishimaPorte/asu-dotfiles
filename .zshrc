@@ -8,9 +8,11 @@ export EDITOR=nvim
 export ANDROID_NDK=/opt/android-ndk
 export ANDROID_HOME=/opt/android-sdk
 export NDK_TOOLCHAIN_DIR=$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64
+export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
 VIRTUAL_ENV_DISABLE_PROMPT=true
 fpath+=~/.zfunc
-PATH=/home/asu/software:/home/asu/go/bin:/home/asu/.local/bin:/home/asu/.myapps:/home/asu/.scripts:$(pyenv root)/bin:$PATH
+PATH=/home/asura/software:/home/asura/go/bin:/home/asura/.local/bin:/home/asura/.myapps:/home/asura/.scripts:$(pyenv root)/bin:$PATH
+PATH=/home/asura/.cargo/bin:$PATH
 PYENV_ROOT=$(pyenv root)
 eval "$(pyenv init -)"
 alias gurl="grpc_cli"
@@ -26,6 +28,7 @@ alias pvim="poetry run nvim"
 alias library="calibre"
 alias post='curl -X POST -H "Content-Type: application\json"'
 alias get='curl -X GET'
+alias ly='cowsay love you too'
 #bindkeys
 bindkey -v
 # End of lines configured by zsh-newuser-install
@@ -51,9 +54,7 @@ function pr {
     fi
 }
 
-function prechpwdls {
-    echo $(ls)
-}
+function prechpwdls { ls }
 
 #function calls
 compinit
@@ -66,4 +67,3 @@ eval "$(zoxide init zsh)"
 add-zsh-hook precmd pr 
 add-zsh-hook chpwd prechpwdls 
 shuf $HOME/.config/.cowsay_lines -n 1 | cowsay -W 70
-. /opt/asdf-vm/asdf.sh
