@@ -73,6 +73,16 @@ lspconfig['pyright'].setup{
     flags = lsp_flags,
     capabilities = capabilities,
     root_dir = util.root_pattern('.git'),
+    -- cmd = { 'ty', 'server' },
+    -- settings = {
+    --     ty = {
+    --         diagnosticMode = 'workspace',
+    --         inlayHints = {
+    --             variableTypes = false,
+    --             callArgumentNames = false,
+    --         }
+    --     }
+    -- },
     on_init = function(client)  
        client.config.settings.python.pythonPath = get_python_path(client.config.root_dir)
     end,

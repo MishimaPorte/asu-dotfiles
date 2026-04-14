@@ -24,8 +24,8 @@ Plug 'williamboman/nvim-lsp-installer'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'                                      -- file searching tool
 Plug 'mrcjkb/haskell-tools.nvim'
-Plug 'nvim-treesitter/nvim-treesitter'                                    -- tresitter for intelligent syntax highlight
-Plug 'nvim-treesitter/playground'
+Plug ('nvim-treesitter/nvim-treesitter', {commit='4916d6592ede8c07973490d9322f187e07dfefac'})                                    -- tresitter for intelligent syntax highlight
+-- Plug 'nvim-treesitter/playground'
 Plug 'folke/tokyonight.nvim'
 Plug "RRethy/nvim-base16"
 Plug 'crispgm/nvim-tabline'

@@ -13,13 +13,20 @@ map('n', '<leader>u', dap.step_out, opts) -- step out (of a function)
 vim.api.nvim_create_user_command('DEBUG', dap.continue, {})
 
 dap.repl.omnifunc = vim.lsp.omnifunc
-local function getVenv(workspace)
+
+local function getVenv()
   -- Use activated virtualenv.
   if vim.env.VIRTUAL_ENV then
     return path.join(vim.env.VIRTUAL_ENV, 'bin', 'python')
   end
+
+  local match = vim.fn.glob(path.join('.', '.venv'))
+  if match ~= '' then
+    return path.join('.', '.venv', 'bin', 'python')
+  end
+
   -- Find and use virtualenv via poetry in workspace directory.
-  local match = vim.fn.glob(path.join(workspace, 'poetry.lock'))
+  local match = vim.fn.glob(path.join('.', 'poetry.lock'))
   if match ~= '' then
     local venv = vim.fn.trim(vim.fn.system('poetry env info -p 2> /dev/null'))
     return path.join(venv, 'bin', 'python')
@@ -92,21 +99,28 @@ dap.configurations.python = {
     request = 'launch';
     name = "main.py";
     program = "main.py"; 
-    pythonPath = getVenv;
+    pythonPath = getVenv();
   },
   {
     type = 'python'; 
     request = 'launch';
     name = "proj";
     program = "src"; 
-    pythonPath = getVenv;
+    pythonPath = getVenv();
   },
   {
     type = 'python'; 
     request = 'launch';
     name = "test";
     module = 'pytest';
-    pythonPath = getVenv;
+    pythonPath = getVenv();
+  },
+  {
+    type = 'python'; 
+    request = 'launch';
+    name = "campaign management";
+    program = "campaign-management/"; 
+    pythonPath = getVenv();
   },
 }
 
