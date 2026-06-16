@@ -9,6 +9,9 @@ export ANDROID_NDK=/opt/android-ndk
 export ANDROID_HOME=/opt/android-sdk
 export NDK_TOOLCHAIN_DIR=$ANDROID_NDK/toolchains/llvm/prebuilt/linux-x86_64
 export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR}/ssh-agent.socket"
+export MOZ_ENABLE_WAYLAND=1
+export XDG_SESSION_TYPE=wayland
+export XDG_CURRENT_DESKTOP=sway
 VIRTUAL_ENV_DISABLE_PROMPT=true
 fpath+=~/.zfunc
 PATH=/home/asura/software:/home/asura/go/bin:/home/asura/.local/bin:/home/asura/.myapps:/home/asura/.scripts:$(pyenv root)/bin:$PATH
@@ -29,6 +32,10 @@ alias library="calibre"
 alias post='curl -X POST -H "Content-Type: application\json"'
 alias get='curl -X GET'
 alias ly='cowsay love you too'
+alias ily='cowsay I love you too'
+alias laudate='claude --dangerously-skip-permissions'
+alias cwr="git worktree list | grep '(bare)' | awk '{ print \$1 }'"
+alias cdr="cd \$(git worktree list | grep '(bare)' | awk '{ print \$1 }')"
 #bindkeys
 bindkey -v
 # End of lines configured by zsh-newuser-install

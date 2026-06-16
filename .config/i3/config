@@ -70,7 +70,7 @@ bindsym $mod+a focus parent
 bindsym $mod+x focus child
 
 # toggle tiling / floating
-#bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 #bindsym $mod+space focus mode_toggle
 
@@ -170,5 +170,8 @@ input * {
 
 bindsym $mod+Control+x exec swaylock
 bindsym $mod+Control+s exec slurp | grim -g - /home/asura/pics/screenshot.png
+
+bindsym $mod+Shift+i move window to scratchpad
+bindsym $mod+i scratchpad show
 
 output * background /home/asura/pics/lunatic_magician.png fill

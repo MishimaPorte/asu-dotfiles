@@ -1,5 +1,13 @@
 local hl = vim.api.nvim_set_hl
 
+require "tokyonight" .setup {
+  transparent = true, -- Enable this to disable setting the background color
+  styles = {
+    sidebars = "transparent", -- Style for sidebars, can be "dark", "transparent" or "normal"
+    floats = "transparent",   -- Style for floating windows
+  },
+}
+
 vim.cmd[[colorscheme tokyonight-night]]
 
 -- here lies the custom themeing, let the Lord forgive me
